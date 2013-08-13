@@ -1,34 +1,27 @@
 <?php
 
-//Adds a filter to form id 26. Replace 26 with your actual form id
-add_filter( "gform_pre_render_4", sijaishaku_plugin_populate_checkbox );
-add_filter( "gform_admin_pre_render_4", sijaishaku_plugin_populate_checkbox );
+/**
+ * Login user after register form.
+ *
+ * @link http://www.gravityhelp.com/forums/topic/form-direct-to-private-page-with-auto-login#post-97328
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_autologin( $user_id, $config, $entry, $password ) {
 
-function sijaishaku_plugin_populate_checkbox( $form ) {
-
-    //Creating choices
-    $choices = array(
-                    array( "text" => "Test 1", "value" => "test1" ),
-                    array( "text" => "Test 2", "value" => "test2" ),
-                    array( "text" => "Test 3", "value" => "test3" )
-                    );
-
-    $inputs = array(
-                    array( "label" => "Test 1", "id" => 4.1 ), //replace 2 in 2.1 with your field id
-                    array( "label" => "Test 2", "id" => 4.2 ), //replace 2 in 2.2 with your field id
-                    array( "label" => "Test 2", "id" => 4.3 ), //replace 2 in 2.3 with your field id
-                );
-
-    //Adding items to field id 2. Replace 2 with your actual field id. You can get the field id by looking at the input name in the markup.
-    foreach( $form["fields"] as &$field ){
-        //replace 2 with your checkbox field id
-        if( $field["id"] == 4 ){
-            $field["choices"] = $choices;
-            $field["inputs"] = $inputs;
-        }
-    }
-
-    return $form;
+    wp_set_auth_cookie( $user_id, false, '' );
+	
 }
+add_action( 'gform_user_registered', 'sijaishaku_plugin_autologin', 10, 4 );
 
+/**
+ * Disable Entries when updating entry. 
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_gform_update_post_entries( $status, $form )
+{
+  return false;
+}
+add_filter( 'gform_update_post_entries', 'sijaishaku_plugin_gform_update_post_entries', 10, 2 );
 ?>

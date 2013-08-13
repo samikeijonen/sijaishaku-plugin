@@ -53,10 +53,16 @@ class Sijaishaku_Plugin {
 	public function constants() {
 
 		/* Set constant path to the plugin directory. */
-		define( 'SIJAISHAKU_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+		if ( ! defined( 'SIJAISHAKU_PLUGIN_DIR' ) )	
+			define( 'SIJAISHAKU_PLUGIN_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 		/* Set the constant path to the includes directory. */
-		define( 'SIJAISHAKU_PLUGIN_INCLUDES', SIJAISHAKU_PLUGIN_DIR . trailingslashit( 'includes' ) );
+		if ( ! defined( 'SIJAISHAKU_PLUGIN_INCLUDES' ) )	
+			define( 'SIJAISHAKU_PLUGIN_INCLUDES', SIJAISHAKU_PLUGIN_DIR . trailingslashit( 'includes' ) );
+		
+		/* Set plugin folder URL. */
+		if ( ! defined( 'SIJAISHAKU_PLUGIN_URL' ) )
+			define( 'SIJAISHAKU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 	}
 	

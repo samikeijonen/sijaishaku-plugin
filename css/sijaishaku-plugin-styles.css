@@ -1,0 +1,90 @@
+#sijaishaku-cat-check,
+#sijaishaku-tag-check,
+#sijaishaku-level-check {
+	margin: 14px 0;
+}
+#sijaishaku-cat-check input[type=checkbox],
+#sijaishaku-tag-check input[type=checkbox],
+#sijaishaku-level-check input[type=checkbox] {
+	float: left;
+	margin: 5px 6px 0 0;
+}
+#sijaishaku-cat-check label,
+#sijaishaku-tag-check label,
+#sijaishaku-level-check label {
+	display: block;
+	vertical-align: top;
+}
+
+.sijaishaku-name,
+.sijaishaku-email,
+.sijaishaku-phone {
+	display: block;
+}
+.sijaishaku-plugin-name,
+.sijaishaku-plugin-email,
+.sijaishaku-plugin-phone {
+	font-weight: bold;
+}
+
+.sijaishaku-post-deleted,
+.sijaishaku-post-max  {
+	background: #f9f9f9;
+	border: 1px solid #e5e5e5;
+	padding: 3%;
+}
+
+#sijaishaku-search-results {
+	margin-top: 1em;
+}
+
+/* === Clearfix. @link http://nicolasgallagher.com/micro-clearfix-hack === */
+
+#sijaishaku-list-by:before,
+#sijaishaku-list-by:after,
+#sijaishaku-check:before,
+#sijaishaku-check:after,
+.sijaishaku-search:before,
+.sijaishaku-search:after  {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+#sijaishaku-list-by:after,
+#sijaishaku-check:after,
+.sijaishaku-search:after  {
+	clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+#sijaishaku-list-by,
+#sijaishaku-check,
+.sijaishaku-search {
+	*zoom: 1;
+}
+
+/* Minimum width of 686 pixels. */
+@media screen and (min-width: 49em) {
+
+#sijaishaku-list-by-towns,
+#sijaishaku-list-by-subjects,
+#sijaishaku-list-by-levels,
+#sijaishaku-cat-check,
+#sijaishaku-tag-check,
+#sijaishaku-level-check  {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	width: 33.3333333%;
+}
+#sijaishaku-list-by-towns,
+#sijaishaku-list-by-subjects,
+#sijaishaku-cat-check,
+#sijaishaku-tag-check {
+	padding-right: 4%;
+}
+
+}

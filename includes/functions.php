@@ -1,20 +1,6 @@
 <?php
 
 /**
- * Login user after register form.
- *
- * @link http://www.gravityhelp.com/forums/topic/form-direct-to-private-page-with-auto-login#post-97328
- *
- * @since 0.1.0
- */
-function sijaishaku_plugin_autologin( $user_id, $config, $entry, $password ) {
-
-    wp_set_auth_cookie( $user_id, false, '' );
-	
-}
-add_action( 'gform_user_registered', 'sijaishaku_plugin_autologin', 10, 4 );
-
-/**
  * Filter search by category and tag search page.
  *
  * @since 0.1.0
@@ -152,16 +138,17 @@ function sijaishaku_plugin_output_name_email_phone() { ?>
 <?php
 
 }
- 
+
 /**
- * Disable Entries when updating entry. 
+ * Add base plugin css. 
  *
  * @since 0.1.0
  */
-function sijaishaku_plugin_gform_update_post_entries( $status, $form )
-{
-  return false;
+ function sijaishaku_plugin_css() {
+
+	wp_enqueue_style( 'sijais-plugin-stylesheet', SIJAISHAKU_PLUGIN_URL . 'css/sijaishaku-plugin-styles.css', false, '20130813', 'all' );
+
 }
-add_filter( 'gform_update_post_entries', 'sijaishaku_plugin_gform_update_post_entries', 10, 2 );
+add_action( 'wp_enqueue_scripts', 'sijaishaku_plugin_css' );
 
 ?>
