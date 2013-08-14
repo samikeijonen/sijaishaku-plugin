@@ -41,7 +41,7 @@ function sijaishaku_plugin_get_posts( $atts, $content = null ) {
 
 	ob_start();
 
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && !isset( $_GET['edit'] ) && !isset( $_GET['delete'] ) ) {
 		
 		/* Get user posts. */
 		$sijaishaku_plugin_author_posts =  get_posts( 'author=' . get_current_user_id() . '&posts_per_page=-1' );
@@ -49,10 +49,16 @@ function sijaishaku_plugin_get_posts( $atts, $content = null ) {
 		if( $sijaishaku_plugin_author_posts ) {
 			echo '<ul>';
 			foreach ( $sijaishaku_plugin_author_posts as $sijaishaku_plugin_author_post )  {
-				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="' . wp_nonce_url( 'editoi?gform_post_id=' . $sijaishaku_plugin_author_post->ID, 'edit_link' ) . '">' . __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | <a href="' . wp_nonce_url( 'editoi?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID, 'delete_link' )  . '">' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
+				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="' . wp_nonce_url( '?edit=on&gform_post_id=' . $sijaishaku_plugin_author_post->ID, 'edit_link' ) . '">' . __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | <a href="' . wp_nonce_url( '?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID, 'delete_link' )  . '">' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
 			}
 			echo '</ul>';
 		}
+		
+	} elseif ( isset( $_GET['delete_id'] ) && is_user_logged_in() && 'on' == esc_attr( $_GET['delete'] ) && current_user_can( 'edit_post', absint( $_GET['delete_id'] ) ) && wp_verify_nonce( $_GET['_wpnonce'], 'delete_link' ) ) {
+					
+		/* Delete a post when have rights to do that. */
+		wp_delete_post( absint( $_GET['delete_id'] ) );
+		echo '<p class="sijaishaku-post-deleted">' . __( 'Post was deleted succesfully.', 'sijaishaku-plugin' ) . '</p>';
 		
 	} else {
 		echo '';
@@ -474,5 +480,19 @@ function sijaishaku_plugin_logged_check_shortcode( $atts, $content = null ) {
 	
 }
 add_shortcode( 'sijaishaku_plugin_logged', 'sijaishaku_plugin_logged_check_shortcode' );
+
+/**
+ * Show edit form only if certain criteria are in place.
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_edit_form_shortcode( $atts, $content = null ) {
+
+	 if ( is_user_logged_in() && !is_null( $content ) && !is_feed() && isset( $_GET['gform_post_id'] ) && 'on' == esc_attr( $_GET['edit'] ) && current_user_can( 'edit_post', absint( $_GET['gform_post_id'] ) ) && wp_verify_nonce( $_GET['_wpnonce'], 'edit_link' ) )
+		return do_shortcode( $content );
+	return '';
+	
+}
+add_shortcode( 'sijaishaku_plugin_edit_form', 'sijaishaku_plugin_edit_form_shortcode' );
 
 ?>
