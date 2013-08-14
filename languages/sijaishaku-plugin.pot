@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sijaishaku Plugin 0.1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sijaishaku-plugin\n"
-"POT-Creation-Date: 2013-08-13 16:14:45+00:00\n"
+"POT-Creation-Date: 2013-08-14 18:51:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,133 +12,137 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: includes/functions.php:104
+#: includes/functions.php:93
 msgid "Name: "
 msgstr ""
 
-#: includes/functions.php:118
+#: includes/functions.php:107
 msgid "Email: "
 msgstr ""
 
-#: includes/functions.php:132
+#: includes/functions.php:121
 msgid "Phone: "
 msgstr ""
 
-#: includes/shortcodes.php:20
+#: includes/shortcodes.php:23
 msgid "Lost password?"
 msgstr ""
 
-#: includes/shortcodes.php:49
+#: includes/shortcodes.php:52
 msgid "Click to edit"
 msgstr ""
 
-#: includes/shortcodes.php:49
+#: includes/shortcodes.php:52
 msgid "Delete"
 msgstr ""
 
-#: includes/shortcodes.php:78 includes/shortcodes.php:237
+#: includes/shortcodes.php:61
+msgid "Post was deleted succesfully."
+msgstr ""
+
+#: includes/shortcodes.php:87 includes/shortcodes.php:246
 msgid "Towns"
 msgstr ""
 
-#: includes/shortcodes.php:98 includes/shortcodes.php:257
+#: includes/shortcodes.php:107 includes/shortcodes.php:266
 msgid "Subjects"
 msgstr ""
 
-#: includes/shortcodes.php:118 includes/shortcodes.php:277
-#: includes/taxonomy.php:25
+#: includes/shortcodes.php:127 includes/shortcodes.php:286
+#: includes/taxonomy.php:29
 msgid "Levels"
 msgstr ""
 
-#: includes/shortcodes.php:137 includes/shortcodes.php:296
-#: includes/shortcodes.php:439
+#: includes/shortcodes.php:146 includes/shortcodes.php:305
+#: includes/shortcodes.php:448
 msgid "Search"
 msgstr ""
 
-#: includes/shortcodes.php:172
+#: includes/shortcodes.php:181
 msgid "Search results"
 msgstr ""
 
-#: includes/shortcodes.php:185
+#: includes/shortcodes.php:194
 msgid "l, F jS, Y, g:i a"
 msgstr ""
 
-#: includes/shortcodes.php:196
+#: includes/shortcodes.php:205
 msgid "Posted in"
 msgstr ""
 
-#: includes/shortcodes.php:196
+#: includes/shortcodes.php:205
 msgid "Tagged"
 msgstr ""
 
-#: includes/shortcodes.php:196
+#: includes/shortcodes.php:205
 msgid "Academy level"
 msgstr ""
 
-#: includes/shortcodes.php:207
+#: includes/shortcodes.php:216
 msgid "Nothing found"
 msgstr ""
 
-#: includes/shortcodes.php:209
+#: includes/shortcodes.php:218
 msgid "Apologies, but no entries were found."
 msgstr ""
 
-#: includes/shortcodes.php:316
+#: includes/shortcodes.php:325
 msgid "List by towns"
 msgstr ""
 
-#: includes/shortcodes.php:331
+#: includes/shortcodes.php:340
 msgid "List by subject"
 msgstr ""
 
-#: includes/shortcodes.php:347
+#: includes/shortcodes.php:356
 msgid "List by level"
 msgstr ""
 
-#: includes/shortcodes.php:381
+#: includes/shortcodes.php:390
 msgid "Search for:"
 msgstr ""
 
-#: includes/taxonomy.php:15
+#: includes/taxonomy.php:19
 msgctxt "taxonomy general name"
 msgid "Academy Levels"
 msgstr ""
 
-#: includes/taxonomy.php:16
+#: includes/taxonomy.php:20
 msgctxt "taxonomy singular name"
 msgid "Level"
 msgstr ""
 
-#: includes/taxonomy.php:17
+#: includes/taxonomy.php:21
 msgid "Search Levels"
 msgstr ""
 
-#: includes/taxonomy.php:18
+#: includes/taxonomy.php:22
 msgid "All Levels"
 msgstr ""
 
-#: includes/taxonomy.php:19
+#: includes/taxonomy.php:23
 msgctxt "parent item"
 msgid "Parent Level"
 msgstr ""
 
-#: includes/taxonomy.php:20
+#: includes/taxonomy.php:24
 msgctxt "parent item colon"
 msgid "Parent Level:"
 msgstr ""
 
-#: includes/taxonomy.php:21
+#: includes/taxonomy.php:25
 msgid "Edit Levels"
 msgstr ""
 
-#: includes/taxonomy.php:22
+#: includes/taxonomy.php:26
 msgid "Update Level"
 msgstr ""
 
-#: includes/taxonomy.php:23
+#: includes/taxonomy.php:27
 msgid "Add New Level"
 msgstr ""
 
-#: includes/taxonomy.php:24
+#: includes/taxonomy.php:28
 msgid "New Level Name"
 msgstr ""
 #. Plugin Name of the plugin/theme
