@@ -1,5 +1,8 @@
 <?php
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Filter search by category and tag search page.
  *
@@ -88,7 +91,7 @@ add_action( 'pre_get_posts', 'sijaishaku_plugin_home_filter' );
 function sijaishaku_plugin_get_name() {
 	
 	$name = '<span class="sijaishaku-plugin-name">' . __( 'Name: ', 'sijaishaku-plugin' ) . '</span>';
-	$name .= get_the_author_meta( 'display_name' );
+	$name .= esc_attr( get_the_author_meta( 'display_name' ) );
 	
 	return $name;
 
@@ -102,7 +105,7 @@ function sijaishaku_plugin_get_name() {
 function sijaishaku_plugin_get_email() {
 								
 	$email = '<span class="sijaishaku-plugin-email">' . __( 'Email: ', 'sijaishaku-plugin' ) . '</span>';
-	$email .= get_the_author_meta( 'user_email' );
+	$email .= esc_attr( get_the_author_meta( 'user_email' ) );
 	
 	return $email;
 
@@ -116,7 +119,7 @@ function sijaishaku_plugin_get_email() {
 function sijaishaku_plugin_get_phone() {
 	
 	$phone = '<span class="sijaishaku-plugin-phone">' . __( 'Phone: ', 'sijaishaku-plugin' ) . '</span>';
-	$phone .= get_the_author_meta( 'phone' );
+	$phone .= esc_attr( get_the_author_meta( 'phone' ) );
 	
 	return $phone;
 

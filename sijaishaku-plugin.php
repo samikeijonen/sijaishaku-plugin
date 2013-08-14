@@ -22,6 +22,9 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
+ // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+ 
 class Sijaishaku_Plugin {
 
 	/**

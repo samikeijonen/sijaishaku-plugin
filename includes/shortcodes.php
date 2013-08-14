@@ -1,9 +1,12 @@
 <?php
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Login Shortcode
  *
- * Shows a login form allowing users to users to log in.
+ * Shows a login form allowing users to log in.
  *
  * @since 0.1.0
  */
@@ -46,7 +49,7 @@ function sijaishaku_plugin_get_posts( $atts, $content = null ) {
 		if( $sijaishaku_plugin_author_posts ) {
 			echo '<ul>';
 			foreach ( $sijaishaku_plugin_author_posts as $sijaishaku_plugin_author_post )  {
-				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="editoi?gform_post_id='. $sijaishaku_plugin_author_post->ID . '">'. __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | <a href="editoi?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID . '">' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
+				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="' . wp_nonce_url( 'editoi?gform_post_id=' . $sijaishaku_plugin_author_post->ID, 'edit_link' ) . '">' . __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | <a href="' . wp_nonce_url( 'editoi?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID, 'delete_link' )  . '">' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
 			}
 			echo '</ul>';
 		}
