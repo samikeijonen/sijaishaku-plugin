@@ -495,4 +495,19 @@ function sijaishaku_plugin_edit_form_shortcode( $atts, $content = null ) {
 }
 add_shortcode( 'sijaishaku_plugin_edit_form', 'sijaishaku_plugin_edit_form_shortcode' );
 
+/**
+ * User can only add one post. It's added by form (Gravity form for now).
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_add_message_shortcode( $atts, $content = null ) {
+
+	 if ( is_user_logged_in() && !is_null( $content ) && !is_feed() && count_user_posts( get_current_user_id() ) >= 1 )
+		return '<p class="sijaishaku-post-max">' . __( 'Thanks for posting a message. You can only write this one post.', 'sijaishaku-plugin' ) . '</p>';
+	else
+		return do_shortcode( $content );
+	
+}
+add_shortcode( 'sijaishaku_plugin_add_message', 'sijaishaku_plugin_add_message_shortcode' );
+
 ?>
