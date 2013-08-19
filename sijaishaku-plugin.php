@@ -91,6 +91,7 @@ class Sijaishaku_Plugin {
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'functions.php' );
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'taxonomy.php' );
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'shortcodes.php' );
+		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'gravity-forms.php' );
 		
 	}
 
