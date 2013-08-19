@@ -90,8 +90,7 @@ add_action( 'pre_get_posts', 'sijaishaku_plugin_home_filter' );
  */
 function sijaishaku_plugin_get_name() {
 	
-	$name = '<span class="sijaishaku-plugin-name">' . __( 'Name: ', 'sijaishaku-plugin' ) . '</span>';
-	$name .= esc_attr( get_the_author_meta( 'display_name' ) );
+	$name = esc_attr( get_the_author_meta( 'display_name' ) );
 	
 	return $name;
 
@@ -103,9 +102,8 @@ function sijaishaku_plugin_get_name() {
  * @since 0.1.0
  */
 function sijaishaku_plugin_get_email() {
-								
-	$email = '<span class="sijaishaku-plugin-email">' . __( 'Email: ', 'sijaishaku-plugin' ) . '</span>';
-	$email .= esc_attr( get_the_author_meta( 'user_email' ) );
+							
+	$email = esc_attr( get_the_author_meta( 'user_email' ) );
 	
 	return $email;
 
@@ -118,8 +116,7 @@ function sijaishaku_plugin_get_email() {
  */
 function sijaishaku_plugin_get_phone() {
 	
-	$phone = '<span class="sijaishaku-plugin-phone">' . __( 'Phone: ', 'sijaishaku-plugin' ) . '</span>';
-	$phone .= esc_attr( get_the_author_meta( 'phone' ) );
+	$phone = esc_attr( get_the_author_meta( 'phone' ) );
 	
 	return $phone;
 
@@ -132,10 +129,10 @@ function sijaishaku_plugin_get_phone() {
  */
 function sijaishaku_plugin_output_name_email_phone() { ?>
 
-	<div itemscope itemtype="http://schema.org/Person">
-		<span itemprop="name" class="sijaishaku-name"><?php echo sijaishaku_plugin_get_name(); ?></span>
-		<span itemprop="email" class="sijaishaku-email"><?php echo sijaishaku_plugin_get_email(); ?></span>
-		<span itemprop="telephone" class="sijaishaku-phone"><?php echo sijaishaku_plugin_get_phone(); ?></span>
+	<div itemscope itemtype="http://schema.org/Person" class="sijaishaku-plugin-name-email-phone">
+		<span itemprop="name" class="sijaishaku-name"><span class="sijaishaku-plugin-name"><?php  _e( 'Name: ', 'sijaishaku-plugin' ); ?></span><?php echo sijaishaku_plugin_get_name(); ?></span>
+		<span itemprop="email" class="sijaishaku-email"><span class="sijaishaku-plugin-email"><?php  _e( 'Email: ', 'sijaishaku-plugin' ); ?></span><?php echo antispambot( sijaishaku_plugin_get_email() ); ?></span>
+		<span itemprop="telephone" class="sijaishaku-phone"><span class="sijaishaku-plugin-phone"><?php  _e( 'Phone: ', 'sijaishaku-plugin' ); ?></span><?php echo sijaishaku_plugin_get_phone(); ?></span>
 	</div>
 
 <?php
