@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sijaishaku Plugin 0.1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sijaishaku-plugin\n"
-"POT-Creation-Date: 2013-08-14 18:51:13+00:00\n"
-"PO-Revision-Date: 2013-08-14 21:51+0200\n"
+"POT-Creation-Date: 2013-08-17 09:21:12+00:00\n"
+"PO-Revision-Date: 2013-08-17 12:22+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language: fi_FI\n"
@@ -14,15 +14,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#: includes/functions.php:93
+#: includes/functions.php:133
 msgid "Name: "
 msgstr "Nimi: "
 
-#: includes/functions.php:107
+#: includes/functions.php:134
 msgid "Email: "
 msgstr "Sähköposti: "
 
-#: includes/functions.php:121
+#: includes/functions.php:135
 msgid "Phone: "
 msgstr "Puhelin: "
 
@@ -103,6 +103,10 @@ msgstr "Kouluasteet"
 #: includes/shortcodes.php:390
 msgid "Search for:"
 msgstr "Etsi:"
+
+#: includes/shortcodes.php:506
+msgid "Thanks for posting a message. You can only write this one post."
+msgstr "Kiitos ilmoituksen jättämisestä. Voit jättää vain yhden ilmoituksen."
 
 #: includes/taxonomy.php:19
 msgctxt "taxonomy general name"
