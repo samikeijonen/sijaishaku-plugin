@@ -22,7 +22,7 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
- // Exit if accessed directly
+// Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
  
 class Sijaishaku_Plugin {
@@ -42,9 +42,6 @@ class Sijaishaku_Plugin {
 
 		/* Load the functions files. */
 		add_action( 'plugins_loaded', array( &$this, 'includes' ), 3 );
-
-		/* Register activation hook. */
-		//register_activation_hook( __FILE__, array( &$this, 'activation' ) );
 		
 	}
 
@@ -92,6 +89,9 @@ class Sijaishaku_Plugin {
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'taxonomy.php' );
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'shortcodes.php' );
 		require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'gravity-forms.php' );
+		
+		if ( is_admin() )
+			require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'admin.php' );
 		
 	}
 

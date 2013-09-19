@@ -46,10 +46,16 @@ function sijaishaku_plugin_get_posts( $atts, $content = null ) {
 		/* Get user posts. */
 		$sijaishaku_plugin_author_posts =  get_posts( 'author=' . get_current_user_id() . '&posts_per_page=-1' );
 		
+		/* Delete on click message. */
+		$sijaishaku_plugin_delete_onclick = ' onclick="if ( confirm(\'' . esc_js( __( "Are you sure you want to delete your message. 'Cancel' to stop, 'OK' to delete.", 'sijaishaku-plugin' ) ) . '\') ) {return true;}return false;';
+		
 		if( $sijaishaku_plugin_author_posts ) {
 			echo '<ul>';
 			foreach ( $sijaishaku_plugin_author_posts as $sijaishaku_plugin_author_post )  {
-				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="' . wp_nonce_url( '?edit=on&gform_post_id=' . $sijaishaku_plugin_author_post->ID, 'edit_link' ) . '">' . __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | <a href="' . wp_nonce_url( '?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID, 'delete_link' )  . '">' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
+				echo '<li>' . $sijaishaku_plugin_author_post->post_title . ' | <a href="' . wp_nonce_url( '?edit=on&gform_post_id=' . $sijaishaku_plugin_author_post->ID, 'edit_link' ) . '">' . __( 'Click to edit', 'sijaishaku-plugin' ) . '</a> | ';
+				echo '<a href="' . wp_nonce_url( '?delete=on&delete_id=' . $sijaishaku_plugin_author_post->ID, 'delete_link' );
+				printf( __( '" %1$s"', 'sijaishaku-plugin' ), $sijaishaku_plugin_delete_onclick );
+				echo '>' . __( 'Delete', 'sijaishaku-plugin' ) . '</a></li>';
 			}
 			echo '</ul>';
 		}
@@ -86,7 +92,7 @@ function sijaishaku_plugin_get_search_posts( $atts, $content = null ) {
 				<div id="sijaishaku-cat-check">
 				<p><strong><?php _e( 'Towns', 'sijaishaku-plugin' ); ?></strong></p>
 					<?php
-						$categories = get_categories(); 
+						$categories = get_categories( array( 'taxonomy' => 'city' ) ); 
 						foreach ( $categories as $category ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_cat[]" id="filter_cat_' . $category->cat_ID . '" value="'. $category->cat_ID . '"';
@@ -106,7 +112,7 @@ function sijaishaku_plugin_get_search_posts( $atts, $content = null ) {
 				<div id="sijaishaku-tag-check">
 				<p><strong><?php _e( 'Subjects', 'sijaishaku-plugin' ); ?></strong></p>
 					<?php
-						$categories = get_categories( array( 'taxonomy' => 'post_tag' ) ); 
+						$categories = get_categories( array( 'taxonomy' => 'subject' ) ); 
 						foreach ( $categories as $category ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_tag[]" id="filter_tag_' . $category->cat_ID . '" value="'. $category->cat_ID . '"';
@@ -158,12 +164,12 @@ function sijaishaku_plugin_get_search_posts( $atts, $content = null ) {
 			'tax_query' => array(
 				'relation' => 'AND',
 				array(
-					'taxonomy' => 'category',
+					'taxonomy' => 'city',
 					'field' => 'id',
 					'terms' => isset( $_POST['filter_cat'] ) ? $_POST['filter_cat'] : ''
 				),
 				array(
-					'taxonomy' => 'post_tag',
+					'taxonomy' => 'subject',
 					'field' => 'id',
 					'terms' => isset( $_POST['filter_tag'] ) ? $_POST['filter_tag'] : ''
 				),
@@ -202,7 +208,7 @@ function sijaishaku_plugin_get_search_posts( $atts, $content = null ) {
 						</div><!-- .entry-content -->
 							
 						<footer class="entry-footer">
-							<?php echo '<div class="entry-meta">' . __( 'Posted in', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'category', ' ', ', ', ' | ' ) . ' ' . __( 'Tagged', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'post_tag', ' ', ', ', ' | ' ) . ' ' . __( 'Academy level', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'academy_level', ' ', ', ', '' ) . '</div>'; ?>
+							<?php echo '<div class="entry-meta">' . __( 'City', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'city', ' ', ', ', ' | ' ) . ' ' . __( 'Subject', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'subject', ' ', ', ', ' | ' ) . ' ' . __( 'Academy level', 'sijaishaku-plugin' )  . get_the_term_list( get_the_ID(), 'academy_level', ' ', ', ', '' ) . '</div>'; ?>
 						</footer><!-- .entry-footer -->
 
 					</article><!-- .hentry -->
@@ -245,7 +251,7 @@ function sijaishaku_plugin_get_search_home_posts( $atts, $content = null ) {
 				<div id="sijaishaku-cat-check">
 				<p><strong><?php _e( 'Towns', 'sijaishaku' ); ?></strong></p>
 					<?php
-						$categories = get_categories(); 
+						$categories = get_categories( array( 'taxonomy' => 'city' ) ); 
 						foreach ( $categories as $category ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_cat[]" id="filter_cat_' . $category->cat_ID . '" value="'. $category->cat_ID . '"';
@@ -265,7 +271,7 @@ function sijaishaku_plugin_get_search_home_posts( $atts, $content = null ) {
 				<div id="sijaishaku-tag-check">
 				<p><strong><?php _e( 'Subjects', 'sijaishaku' ); ?></strong></p>
 					<?php
-						$categories = get_categories( array( 'taxonomy' => 'post_tag' ) ); 
+						$categories = get_categories( array( 'taxonomy' => 'subject' ) ); 
 						foreach ( $categories as $category ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_tag[]" id="filter_tag_' . $category->cat_ID . '" value="'. $category->cat_ID . '"';
@@ -327,7 +333,8 @@ function sijaishaku_plugin_get_cat_tag_level( $atts, $content = null ) {
 				<?php
 				/* Get gategories. */
 				$sijaishaku_cat_args = array(
-					'title_li'     => ''
+					'title_li'     => '',
+					'taxonomy'     => 'city'
 				);
 				?>
 					
@@ -343,7 +350,7 @@ function sijaishaku_plugin_get_cat_tag_level( $atts, $content = null ) {
 				/* Get tags. */
 				$sijaishaku_tag_args = array(
 					'title_li'     => '',
-					'taxonomy'     => 'post_tag'
+					'taxonomy'     => 'subject'
 				);
 				?>
 					
@@ -394,7 +401,7 @@ function sijaishaku_plugin_get_custom_search( $atts, $content = null ) {
 								
 					<div id="sijaishaku-cat-check">
 						<?php
-						$sijaishaku_categories = get_categories(); 
+						$sijaishaku_categories = get_categories( array( 'taxonomy' => 'city' ) ); 
 						foreach ( $sijaishaku_categories as $sijaishaku_category ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_cat[]" id="filter_cat_' . $sijaishaku_category->cat_ID . '" value="'. $sijaishaku_category->cat_ID . '"';
@@ -411,7 +418,7 @@ function sijaishaku_plugin_get_custom_search( $atts, $content = null ) {
 							
 					<div id="sijaishaku-tag-check">
 						<?php
-						$sijaishaku_tags = get_categories( array( 'taxonomy' => 'post_tag' ) ); 
+						$sijaishaku_tags = get_categories( array( 'taxonomy' => 'subject' ) );
 						foreach ( $sijaishaku_tags as $sijaishaku_tag ) {
 							//$checkboxes ='<li>';
 							$checkboxes = '<input type="checkbox" name="filter_tag[]" id="filter_tag_' . $sijaishaku_tag->cat_ID . '" value="'. $sijaishaku_tag->cat_ID . '"';
@@ -447,11 +454,177 @@ function sijaishaku_plugin_get_custom_search( $atts, $content = null ) {
 							
 			<input type="submit" id="searchsubmit" value="<?php esc_attr_e( 'Search', 'sijaishaku-plugin' ); ?>" />
 		</form>
-		
-	<?php return ob_get_clean();
+	
+	<?php
+	
+	return ob_get_clean();
 
 }					
 add_shortcode( 'sijaishaku_plugin_custom_search', 'sijaishaku_plugin_get_custom_search' );
+
+/**
+ * Custom search form.
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_get_add_front_end( $atts, $content = null ) {
+
+	ob_start();
+	
+	if ( is_user_logged_in() && !isset( $_POST['sijaishaku_plugin_action_front_end'] ) && current_user_can( 'edit_posts' ) ) { ?>
+
+		<form method="post" id="sijaishaku-plugin-add-front-end" class="sijaishaku-plugin-add-front-end-form" action="<?php echo sijaishaku_plugin_current_page_url(); ?>">
+			<div class="sijaishaku-add">
+				<p>
+					<label for="sijaishaku_plugin_post_title" class="sijaishaku-plugin-label"><?php _e( 'Title', 'sijaishaku-plugin' ); ?></label>
+					<input type="text" value="" name="sijaishaku_plugin_post_title" id="sijaishaku_plugin_post_title" />
+				</p>
+				<p>
+					<label for="sijaishaku_plugin_post_content" class="sijaishaku-plugin-label"><?php _e( 'Message', 'sijaishaku-plugin' ); ?></label>
+					<textarea name="sijaishaku_plugin_post_content" id="sijaishaku_plugin_post_content" class="sijaishaku-plugin-add sijaishaku-plugin-large"></textarea>
+				</p>			
+				
+				<?php echo sijaishaku_plugin_get_checkboxes(); // echo checboxes. ?> 
+				
+				<input type="hidden" name="sijaishaku_plugin_add_editor_nonce" value="<?php echo wp_create_nonce( 'sijaishaku-plugin-add-front-nonce' ); ?>"/>
+				<input type="hidden" name="sijaishaku_plugin_action_front_end" value="edit_front_end" />
+				<input type="hidden" name="sijaishaku_plugin_redirect" value="<?php echo esc_url( sijaishaku_plugin_current_page_url() ); ?>" />
+							
+				<input name="sijaishaku_plugin_profile_editor_submit" id="sijaishaku_plugin_profile_editor_submit" type="submit" value="<?php esc_attr_e( 'Submit', 'sijaishaku-plugin' ); ?>" />
+			</div><!-- #sijaishaku-edit-->
+		</form>
+		
+	<?php	
+	} else if ( is_user_logged_in() && isset( $_POST['sijaishaku_plugin_action_front_end'] ) && 'edit_front_end' == $_POST['sijaishaku_plugin_action_front_end'] && current_user_can( 'edit_posts') && wp_verify_nonce( $_POST['sijaishaku_plugin_add_editor_nonce'], 'sijaishaku-plugin-add-front-nonce' ) ) {
+		/* Now you can edit post. */
+		$sijaishaku_plugin_add_post = array(
+			'post_title'   => sanitize_text_field( $_POST['sijaishaku_plugin_post_title'] ),
+			'post_content' => wp_kses( wpautop( $_POST['sijaishaku_plugin_post_content'] ), array( 'strong' => array(), 'p' => array() ) ),
+			//'post_type'    => 'post',
+			'post_status'  => 'publish',
+			//'post_author'  => get_current_user_id(),
+		);
+
+		/* Add the post into the database. */
+		$post_id = wp_insert_post( $sijaishaku_plugin_add_post, $wp_error );
+	
+		/* Validate data. If is array meaning multiple choices validate with array_map. */
+		if ( is_array( $_POST['filter_city'] ) ) {
+			$sijaishaku_plugin_filter_cities = array_map( 'absint', $_POST['filter_city'] );
+		} else {
+			$sijaishaku_plugin_filter_cities = absint( $_POST['filter_city'] );
+		}
+	
+		if ( is_array( $_POST['filter_subject'] ) ) {
+			$sijaishaku_plugin_filter_subjects = array_map( 'absint', $_POST['filter_subject'] );
+		} else {
+			$sijaishaku_plugin_filter_subjects = absint( $_POST['filter_subject'] );
+		}
+		
+		if ( is_array( $_POST['filter_level'] ) ) {
+			$sijaishaku_plugin_filter_levels = array_map( 'absint', $_POST['filter_level'] );
+		} else {
+			$sijaishaku_plugin_filter_levels = absint( $_POST['filter_level'] );
+		}
+	
+		/* Set post terms. */
+		wp_set_post_terms( $post_id, isset( $sijaishaku_plugin_filter_cities ) ? $sijaishaku_plugin_filter_cities : '', 'city' );
+		wp_set_post_terms( $post_id, isset( $sijaishaku_plugin_filter_subjects ) ? $sijaishaku_plugin_filter_subjects : '', 'subject' );
+		wp_set_post_terms( $post_id, isset( $sijaishaku_plugin_filter_levels ) ? $sijaishaku_plugin_filter_levels : '', 'academy_level' );
+	
+		/* Echo that message is added. */
+		echo '<p class="sijaishaku-post-edit">' . __( 'Message added successfully.', 'sijaishaku-plugin' ) . '</p>';
+	
+	} else {
+		echo '<p class="sijaishaku-post-edit">' . __( 'You need to login to add your post.', 'sijaishaku-plugin' ) . '</p>';
+		//echo do_shortcode( '[sijaishaku_plugin_login_form_shortcode]' );	
+	}
+		
+	return ob_get_clean();
+
+}					
+add_shortcode( 'sijaishaku_plugin_add_front_end', 'sijaishaku_plugin_get_add_front_end' );
+
+/**
+ * Custom search form.
+ *
+ * @since 0.1.0
+ */
+function sijaishaku_plugin_get_edit_front_end( $atts, $content = null ) {
+
+	ob_start();
+	
+	if ( is_user_logged_in() && !isset( $_POST['sijaishaku_plugin_action_front_end'] ) && current_user_can( 'edit_post', absint( $_GET['gform_post_id'] ) ) ) { ?>
+
+		<form method="post" id="sijaishaku-plugin-edit-front-end" class="sijaishaku-plugin-edit-front-end-form" action="<?php echo sijaishaku_plugin_current_page_url(); ?>">
+			<div class="sijaishaku-edit">
+				<p>
+					<label for="sijaishaku_plugin_post_title" class="sijaishaku-plugin-label"><?php _e( 'Title', 'sijaishaku-plugin' ); ?></label>
+					<input type="text" value="<?php echo esc_attr( get_post_field( 'post_title', absint( $_GET['gform_post_id'] ) ) ); ?>" name="sijaishaku_plugin_post_title" id="sijaishaku_plugin_post_title" />
+				</p>
+				<p>
+					<label for="sijaishaku_plugin_post_content" class="sijaishaku-plugin-label"><?php _e( 'Message', 'sijaishaku-plugin' ); ?></label>
+					<textarea name="sijaishaku_plugin_post_content" id="sijaishaku_plugin_post_content" class="sijaishaku-plugin-edit sijaishaku-plugin-large"><?php echo esc_textarea( get_post_field( 'post_content', absint( $_GET['gform_post_id'] ) ) ); ?></textarea>
+				</p>			
+				
+				<?php echo sijaishaku_plugin_get_checkboxes(); // echo checboxes. ?> 
+				
+				<input type="hidden" name="sijaishaku_plugin_profile_editor_nonce" value="<?php echo wp_create_nonce( 'sijaishaku-plugin-edit-front-nonce' ); ?>"/>
+				<input type="hidden" name="sijaishaku_plugin_action_front_end" value="edit_front_end" />
+				<input type="hidden" name="sijaishaku_plugin_redirect" value="<?php echo esc_url( sijaishaku_plugin_current_page_url() ); ?>" />
+							
+				<input name="sijaishaku_plugin_profile_editor_submit" id="sijaishaku_plugin_profile_editor_submit" type="submit" value="<?php esc_attr_e( 'Edit', 'sijaishaku-plugin' ); ?>" />
+			</div><!-- #sijaishaku-edit-->
+		</form>
+		
+	<?php	
+	} else if ( is_user_logged_in() && isset( $_POST['sijaishaku_plugin_action_front_end'] ) && 'edit_front_end' == $_POST['sijaishaku_plugin_action_front_end'] && current_user_can( 'edit_post', absint( $_GET['gform_post_id'] ) ) && wp_verify_nonce( $_POST['sijaishaku_plugin_profile_editor_nonce'], 'sijaishaku-plugin-edit-front-nonce' ) ) {
+		/* Now you can edit post. */
+		$sijaishaku_plugin_update_post = array(
+			'ID'           => absint( $_GET['gform_post_id'] ),
+			'post_content' => wp_kses( wpautop( $_POST['sijaishaku_plugin_post_content'] ), array( 'strong' => array(), 'p' => array() ) ),
+			'post_title'   => sanitize_text_field( $_POST['sijaishaku_plugin_post_title'] ),
+		);
+
+		/* Update the post into the database. */
+		wp_update_post( $sijaishaku_plugin_update_post );
+	
+		/* Validate data. If is array meaning multiple choices validate with array_map. */
+		if ( is_array( $_POST['filter_city'] ) ) {
+			$sijaishaku_plugin_filter_cities = array_map( 'absint', $_POST['filter_city'] );
+		} else {
+			$sijaishaku_plugin_filter_cities = absint( $_POST['filter_city'] );
+		}
+	
+		if ( is_array( $_POST['filter_subject'] ) ) {
+			$sijaishaku_plugin_filter_subjects = array_map( 'absint', $_POST['filter_subject'] );
+		} else {
+			$sijaishaku_plugin_filter_subjects = absint( $_POST['filter_subject'] );
+		}
+		
+		if ( is_array( $_POST['filter_level'] ) ) {
+			$sijaishaku_plugin_filter_levels = array_map( 'absint', $_POST['filter_level'] );
+		} else {
+			$sijaishaku_plugin_filter_levels = absint( $_POST['filter_level'] );
+		}
+	
+		/* Set post terms. */
+		wp_set_post_terms( $_GET['gform_post_id'], isset( $sijaishaku_plugin_filter_cities ) ? $sijaishaku_plugin_filter_cities : '', 'city' );
+		wp_set_post_terms( $_GET['gform_post_id'], isset( $sijaishaku_plugin_filter_subjects ) ? $sijaishaku_plugin_filter_subjects : '', 'subject' );
+		wp_set_post_terms( $_GET['gform_post_id'], isset( $sijaishaku_plugin_filter_levels ) ? $sijaishaku_plugin_filter_levels : '', 'academy_level' );
+	
+		/* Echo that message is updated. */
+		echo '<p class="sijaishaku-post-edit">' . __( 'Message updated successfully.', 'sijaishaku-plugin' ) . '</p>';
+	
+	} else {
+		echo '<p class="sijaishaku-post-edit">' . __( 'You need to login to edit your post.', 'sijaishaku-plugin' ) . '</p>';
+		//echo do_shortcode( '[sijaishaku_plugin_login_form_shortcode]' );	
+	}
+		
+	return ob_get_clean();
+
+}					
+add_shortcode( 'sijaishaku_plugin_edit_front_end', 'sijaishaku_plugin_get_edit_front_end' );
 
 /**
  * For logged out users.

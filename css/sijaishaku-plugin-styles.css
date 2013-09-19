@@ -28,6 +28,7 @@
 }
 
 .sijaishaku-post-deleted,
+.sijaishaku-post-edit,
 .sijaishaku-post-max,
 .sijaishaku-post-register {
 	background: #f9f9f9;
@@ -35,8 +36,16 @@
 	padding: 3%;
 }
 
+.sijaishaku-plugin-large {
+	min-height: 220px;
+}
+
 #sijaishaku-search-results {
 	margin-top: 1em;
+}
+
+.sijaishaku-plugin-label {
+	font-weight: bold;
 }
 
 /* === Clearfix. @link http://nicolasgallagher.com/micro-clearfix-hack === */
@@ -66,6 +75,19 @@
 	*zoom: 1;
 }
 
+/* FacetWP CSS. */
+
+body .facetwp-checkbox,
+body .facetwp-checkbox.checked {
+	background-position: 0 3px;
+}
+body .facetwp-facet {
+	max-height: none;
+}
+.facetwp-template .entry-header:first-child {
+	clear: left;
+}
+
 /* Minimum width of 686 pixels. */
 @media screen and (min-width: 49em) {
 
@@ -74,10 +96,10 @@
 #sijaishaku-list-by-levels,
 #sijaishaku-cat-check,
 #sijaishaku-tag-check,
-#sijaishaku-level-check  {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+#sijaishaku-level-check,
+.facetwp-facet-paikkakunnat,
+.facetwp-facet-oppiaineet,
+.facetwp-facet-kouluasteet {
 	float: left;
 	width: 33.3333333%;
 }
