@@ -463,7 +463,7 @@ function sijaishaku_plugin_get_custom_search( $atts, $content = null ) {
 add_shortcode( 'sijaishaku_plugin_custom_search', 'sijaishaku_plugin_get_custom_search' );
 
 /**
- * Custom search form.
+ * Custom form for adding post in front end.
  *
  * @since 0.1.0
  */
@@ -506,7 +506,7 @@ function sijaishaku_plugin_get_add_front_end( $atts, $content = null ) {
 		);
 
 		/* Add the post into the database. */
-		$post_id = wp_insert_post( $sijaishaku_plugin_add_post, $wp_error );
+		$post_id = wp_insert_post( $sijaishaku_plugin_add_post );
 	
 		/* Validate data. If is array meaning multiple choices validate with array_map. */
 		if ( is_array( $_POST['filter_city'] ) ) {
@@ -546,7 +546,7 @@ function sijaishaku_plugin_get_add_front_end( $atts, $content = null ) {
 add_shortcode( 'sijaishaku_plugin_add_front_end', 'sijaishaku_plugin_get_add_front_end' );
 
 /**
- * Custom search form.
+ * Custom form for editing post in front end.
  *
  * @since 0.1.0
  */
