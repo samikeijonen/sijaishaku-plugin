@@ -499,7 +499,7 @@ function sijaishaku_plugin_get_add_front_end( $atts, $content = null ) {
 		/* Now you can edit post. */
 		$sijaishaku_plugin_add_post = array(
 			'post_title'   => sanitize_text_field( $_POST['sijaishaku_plugin_post_title'] ),
-			'post_content' => wp_kses( wpautop( $_POST['sijaishaku_plugin_post_content'] ), array( 'strong' => array(), 'p' => array() ) ),
+			'post_content' => wp_kses( $_POST['sijaishaku_plugin_post_content'], array( 'strong' => array(), 'p' => array() ) ),
 			//'post_type'    => 'post',
 			'post_status'  => 'publish',
 			//'post_author'  => get_current_user_id(),
@@ -582,7 +582,7 @@ function sijaishaku_plugin_get_edit_front_end( $atts, $content = null ) {
 		/* Now you can edit post. */
 		$sijaishaku_plugin_update_post = array(
 			'ID'           => absint( $_GET['gform_post_id'] ),
-			'post_content' => wp_kses( wpautop( $_POST['sijaishaku_plugin_post_content'] ), array( 'strong' => array(), 'p' => array() ) ),
+			'post_content' => wp_kses( $_POST['sijaishaku_plugin_post_content'], array( 'strong' => array(), 'p' => array() ) ),
 			'post_title'   => sanitize_text_field( $_POST['sijaishaku_plugin_post_title'] ),
 		);
 

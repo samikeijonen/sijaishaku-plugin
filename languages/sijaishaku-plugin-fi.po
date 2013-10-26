@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sijaishaku Plugin 0.1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/sijaishaku-plugin\n"
-"POT-Creation-Date: 2013-08-17 09:21:12+00:00\n"
-"PO-Revision-Date: 2013-08-17 12:22+0200\n"
+"POT-Creation-Date: 2013-10-26 09:21:29+00:00\n"
+"PO-Revision-Date: 2013-10-26 12:38+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language: fi_FI\n"
@@ -14,141 +14,288 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#: includes/functions.php:133
+#: includes/admin.php:22
+msgctxt "City name in admin"
+msgid "City"
+msgstr "Paikkakunta"
+
+#: includes/admin.php:23
+msgctxt "Subject name in admin"
+msgid "Subject"
+msgstr "Oppiaine"
+
+#: includes/admin.php:24
+msgctxt "Academy level name in admin"
+msgid "Level"
+msgstr "Kouluaste"
+
+#: includes/functions.php:151
 msgid "Name: "
 msgstr "Nimi: "
 
-#: includes/functions.php:134
+#: includes/functions.php:152
 msgid "Email: "
 msgstr "Sähköposti: "
 
-#: includes/functions.php:135
+#: includes/functions.php:153
 msgid "Phone: "
 msgstr "Puhelin: "
+
+#: includes/functions.php:213 includes/shortcodes.php:211
+msgid "City"
+msgstr "Paikkakunta"
+
+#: includes/functions.php:244 includes/shortcodes.php:211
+msgid "Subject"
+msgstr "Oppiaine"
+
+#: includes/functions.php:275 includes/shortcodes.php:211
+msgid "Academy level"
+msgstr "Kouluaste"
 
 #: includes/shortcodes.php:23
 msgid "Lost password?"
 msgstr "Salasana hukassa?"
 
-#: includes/shortcodes.php:52
+#: includes/shortcodes.php:50
+msgid ""
+"Are you sure you want to delete your message. 'Cancel' to stop, 'OK' to "
+"delete."
+msgstr ""
+"Oletko varma. että haluat poistaa viestin. Klikkaa OK, jos varmasti haluat "
+"poistaa viestin."
+
+#: includes/shortcodes.php:55
 msgid "Click to edit"
 msgstr "Muokkaa"
 
-#: includes/shortcodes.php:52
+#: includes/shortcodes.php:57
+msgid "\" %1$s\""
+msgstr "\" %1$s\""
+
+#: includes/shortcodes.php:58
 msgid "Delete"
 msgstr "Poista"
 
-#: includes/shortcodes.php:61
+#: includes/shortcodes.php:67
 msgid "Post was deleted succesfully."
 msgstr "Ilmoitus poistettiin onnistuneesti."
 
-#: includes/shortcodes.php:87 includes/shortcodes.php:246
+#: includes/shortcodes.php:93 includes/shortcodes.php:252
 msgid "Towns"
 msgstr "Paikkakunnat"
 
-#: includes/shortcodes.php:107 includes/shortcodes.php:266
+#: includes/shortcodes.php:113 includes/shortcodes.php:272
+#: includes/taxonomy.php:58
 msgid "Subjects"
 msgstr "Oppiaineet"
 
-#: includes/shortcodes.php:127 includes/shortcodes.php:286
-#: includes/taxonomy.php:29
+#: includes/shortcodes.php:133 includes/shortcodes.php:292
+#: includes/taxonomy.php:85
 msgid "Levels"
 msgstr "Kouluasteet"
 
-#: includes/shortcodes.php:146 includes/shortcodes.php:305
-#: includes/shortcodes.php:448
+#: includes/shortcodes.php:152 includes/shortcodes.php:311
+#: includes/shortcodes.php:455
 msgid "Search"
 msgstr "Hae"
 
-#: includes/shortcodes.php:181
+#: includes/shortcodes.php:187
 msgid "Search results"
 msgstr "Hakutulokset"
 
-#: includes/shortcodes.php:194
+#: includes/shortcodes.php:200
 msgid "l, F jS, Y, g:i a"
 msgstr "l j.m.Y, G:i"
 
-#: includes/shortcodes.php:205
-msgid "Posted in"
-msgstr "Paikkakunta"
-
-#: includes/shortcodes.php:205
-msgid "Tagged"
-msgstr "Oppiaine"
-
-#: includes/shortcodes.php:205
-msgid "Academy level"
-msgstr "Kouluaste"
-
-#: includes/shortcodes.php:216
+#: includes/shortcodes.php:222
 msgid "Nothing found"
 msgstr "Mitään ei löytynyt"
 
-#: includes/shortcodes.php:218
+#: includes/shortcodes.php:224
 msgid "Apologies, but no entries were found."
 msgstr "Pahoittelut mutta yhtään tulosta ei löytynyt."
 
-#: includes/shortcodes.php:325
+#: includes/shortcodes.php:331
 msgid "List by towns"
 msgstr "Paikkakunnat"
 
-#: includes/shortcodes.php:340
+#: includes/shortcodes.php:347
 msgid "List by subject"
 msgstr "Oppiaineet"
 
-#: includes/shortcodes.php:356
+#: includes/shortcodes.php:363
 msgid "List by level"
 msgstr "Kouluasteet"
 
-#: includes/shortcodes.php:390
+#: includes/shortcodes.php:397
 msgid "Search for:"
 msgstr "Etsi:"
 
-#: includes/shortcodes.php:506
+#: includes/shortcodes.php:479 includes/shortcodes.php:562
+msgid "Title"
+msgstr "Otsikko"
+
+#: includes/shortcodes.php:483 includes/shortcodes.php:566
+msgid "Message"
+msgstr "Viesti"
+
+#: includes/shortcodes.php:493
+msgid "Submit"
+msgstr "Lähetä"
+
+#: includes/shortcodes.php:536
+msgid "Message added successfully."
+msgstr "Ilmoitus lisättiin onnistuneesti."
+
+#: includes/shortcodes.php:539
+msgid "You need to login to add your post."
+msgstr "Kirjaudu sisään, jotta voit lisätä ilmoituksen."
+
+#: includes/shortcodes.php:576
+msgid "Edit"
+msgstr "Muokkaa"
+
+#: includes/shortcodes.php:617
+msgid "Message updated successfully."
+msgstr "Ilmoitus päivitettiin onnistuneesti."
+
+#: includes/shortcodes.php:620
+msgid "You need to login to edit your post."
+msgstr "Kirjaudu sisän, jotta voit muokata ilmoitusta."
+
+#: includes/shortcodes.php:679
 msgid "Thanks for posting a message. You can only write this one post."
 msgstr "Kiitos ilmoituksen jättämisestä. Voit jättää vain yhden ilmoituksen."
 
-#: includes/taxonomy.php:19
+#: includes/taxonomy.php:21
 msgctxt "taxonomy general name"
-msgid "Academy Levels"
-msgstr "Kouluaste"
+msgid "Cities"
+msgstr "Paikkakunnat"
 
-#: includes/taxonomy.php:20
+#: includes/taxonomy.php:22
+msgctxt "taxonomy singular name"
+msgid "City"
+msgstr "Paikkakunta"
+
+#: includes/taxonomy.php:23
+msgid "Search Cities"
+msgstr "Etsi paikkakuntia"
+
+#: includes/taxonomy.php:24
+msgid "All Cities"
+msgstr "Kaikki paikkakunnat"
+
+#: includes/taxonomy.php:25
+msgctxt "parent item"
+msgid "Parent City"
+msgstr "Yläkategoria paikkakunnalle"
+
+#: includes/taxonomy.php:26
+msgctxt "parent item colon"
+msgid "Parent City:"
+msgstr "Yläkategoria paikkakunnalle:"
+
+#: includes/taxonomy.php:27
+msgid "Edit Cities"
+msgstr "Muokkaa paikkakuntia"
+
+#: includes/taxonomy.php:28
+msgid "Update City"
+msgstr "Päivitä paikkakunta"
+
+#: includes/taxonomy.php:29
+msgid "Add New City"
+msgstr "Lisää uusi paikkakunta"
+
+#: includes/taxonomy.php:30
+msgid "New City  Name"
+msgstr "Uuden paikkakunnan nimi"
+
+#: includes/taxonomy.php:31
+msgid "Cities"
+msgstr "Paikkakunnat"
+
+#: includes/taxonomy.php:48
+msgctxt "taxonomy general name"
+msgid "Subjects"
+msgstr "Oppiaineet"
+
+#: includes/taxonomy.php:49 includes/taxonomy.php:76
 msgctxt "taxonomy singular name"
 msgid "Level"
 msgstr "Kouluaste"
 
-#: includes/taxonomy.php:21
+#: includes/taxonomy.php:50
+msgid "Search Subjects"
+msgstr "Etsi Oppiaineita"
+
+#: includes/taxonomy.php:51
+msgid "All Subjects"
+msgstr "Kaikki oppiaineet"
+
+#: includes/taxonomy.php:52
+msgctxt "parent item"
+msgid "Parent Subject"
+msgstr "Yläkategoria oppiaineelle"
+
+#: includes/taxonomy.php:53
+msgctxt "parent item colon"
+msgid "Parent Subject:"
+msgstr "Yläkategoria oppiaineelle:"
+
+#: includes/taxonomy.php:54
+msgid "Edit Subjects"
+msgstr "Muokkaa oppiaineita"
+
+#: includes/taxonomy.php:55
+msgid "Update Subject"
+msgstr "Muokkaa oppiainetta"
+
+#: includes/taxonomy.php:56
+msgid "Add New Subject"
+msgstr "Lisää uusi oppiaine"
+
+#: includes/taxonomy.php:57
+msgid "New Subject Name"
+msgstr "Uuden oppiaineen nimi"
+
+#: includes/taxonomy.php:75
+msgctxt "taxonomy general name"
+msgid "Academy Levels"
+msgstr "Kouluaste"
+
+#: includes/taxonomy.php:77
 msgid "Search Levels"
 msgstr "Etsi kouluasteita"
 
-#: includes/taxonomy.php:22
+#: includes/taxonomy.php:78
 msgid "All Levels"
 msgstr "Kaikki kouluasteet"
 
-#: includes/taxonomy.php:23
+#: includes/taxonomy.php:79
 msgctxt "parent item"
 msgid "Parent Level"
 msgstr "Yläkategoria koulutasolle"
 
-#: includes/taxonomy.php:24
+#: includes/taxonomy.php:80
 msgctxt "parent item colon"
 msgid "Parent Level:"
 msgstr "Yläkategoria koulutasolle:"
 
-#: includes/taxonomy.php:25
+#: includes/taxonomy.php:81
 msgid "Edit Levels"
 msgstr "Muokkaa kouluasteita"
 
-#: includes/taxonomy.php:26
+#: includes/taxonomy.php:82
 msgid "Update Level"
 msgstr "Päivitä kouluaste"
 
-#: includes/taxonomy.php:27
+#: includes/taxonomy.php:83
 msgid "Add New Level"
 msgstr "Lisää uusi kouluaste"
 
-#: includes/taxonomy.php:28
+#: includes/taxonomy.php:84
 msgid "New Level Name"
 msgstr "Uuden kouluasteen nimi"
 
@@ -171,3 +318,9 @@ msgstr "Sami Keijonen"
 #. Author URI of the plugin/theme
 msgid "http://foxnet.fi"
 msgstr "http://foxnet.fi"
+
+#~ msgid "Posted in"
+#~ msgstr "Paikkakunta"
+
+#~ msgid "Tagged"
+#~ msgstr "Oppiaine"

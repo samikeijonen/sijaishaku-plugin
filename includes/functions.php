@@ -205,106 +205,108 @@ else :
  */
 function sijaishaku_plugin_get_checkboxes() { 
 
-		ob_start(); ?>
-				<div id="sijaishaku-check">
+	ob_start(); ?>
+		
+		<div id="sijaishaku-check">
 								
-					<div id="sijaishaku-cat-check">
-						<h3><?php _e( 'City', 'sijaishaku-plugin' ); ?></h3>
-						<?php
-						/* Get  custom taxonomies ids from in array in this post. */
-						$terms = get_the_terms( absint( $_GET['gform_post_id'] ), 'city' );
+			<div id="sijaishaku-cat-check">
+				<h3><?php _e( 'City', 'sijaishaku-plugin' ); ?></h3>
+				<?php
+				/* Get  custom taxonomies ids from in array in this post. */
+				$terms = get_the_terms( absint( isset( $_GET['gform_post_id'] ) ? $_GET['gform_post_id'] : 0 ), 'city' );
 						
-						if ( $terms && ! is_wp_error( $terms ) ) { 
+				if ( $terms && ! is_wp_error( $terms ) ) { 
 
-							$cities = array();
+					$cities = array();
 
-							foreach ( $terms as $term ) {
-								$cities[] = $term->term_id;
-							}
+					foreach ( $terms as $term ) {
+						$cities[] = $term->term_id;
+					}
 							
-						}
+				}
 						
-						$sijaishaku_categories = get_categories( array( 'taxonomy' => 'city' ) ); 
-						foreach ( $sijaishaku_categories as $sijaishaku_category ) {
-							//$checkboxes ='<li>';
-							$checkboxes = '<input type="checkbox" name="filter_city[]" id="filter_city_' . $sijaishaku_category->cat_ID . '" value="'. $sijaishaku_category->cat_ID . '"';
-							if ( !empty( $cities ) && in_array( $sijaishaku_category->cat_ID, $cities ) ) { $checkboxes .= 'checked="checked"'; }
-							$checkboxes .= ' />';
-							$checkboxes .= '<label for="filter_city_' . $sijaishaku_category->cat_ID . '">';
-							$checkboxes .= $sijaishaku_category->cat_name;
-							$checkboxes .= '</label>';
-							//$checkboxes .= '</li>';
-							echo $checkboxes;
-						}
-						?>
-					</div><!-- #sijaishaku-cat-check -->
+				$sijaishaku_categories = get_categories( array( 'taxonomy' => 'city' ) ); 
+				foreach ( $sijaishaku_categories as $sijaishaku_category ) {
+					//$checkboxes ='<li>';
+					$checkboxes = '<input type="checkbox" name="filter_city[]" id="filter_city_' . $sijaishaku_category->cat_ID . '" value="'. $sijaishaku_category->cat_ID . '"';
+					if ( !empty( $cities ) && in_array( $sijaishaku_category->cat_ID, $cities ) ) { $checkboxes .= 'checked="checked"'; }
+					$checkboxes .= ' />';
+					$checkboxes .= '<label for="filter_city_' . $sijaishaku_category->cat_ID . '">';
+					$checkboxes .= $sijaishaku_category->cat_name;
+					$checkboxes .= '</label>';
+					//$checkboxes .= '</li>';
+					echo $checkboxes;
+				}
+				?>
+			</div><!-- #sijaishaku-cat-check -->
 							
-					<div id="sijaishaku-tag-check">
-						<h3><?php _e( 'Subject', 'sijaishaku-plugin' ); ?></h3>
-						<?php
-						/* Get  custom taxonomies ids from in array in this post. */
-						$terms = get_the_terms( absint( $_GET['gform_post_id'] ), 'subject' );
+			<div id="sijaishaku-tag-check">
+				<h3><?php _e( 'Subject', 'sijaishaku-plugin' ); ?></h3>
+				<?php
+				/* Get  custom taxonomies ids from in array in this post. */
+				$terms = get_the_terms( absint( isset( $_GET['gform_post_id'] ) ? $_GET['gform_post_id'] : 0 ), 'subject' );
 						
-						if ( $terms && ! is_wp_error( $terms ) ) { 
+				if ( $terms && ! is_wp_error( $terms ) ) { 
 
-							$subjects = array();
+					$subjects = array();
 
-							foreach ( $terms as $term ) {
-								$subjects[] = $term->term_id;
-							}
+					foreach ( $terms as $term ) {
+						$subjects[] = $term->term_id;
+					}
 							
-						}
+				}
 						
-						$sijaishaku_tags = get_categories( array( 'taxonomy' => 'subject' ) ); 
-						foreach ( $sijaishaku_tags as $sijaishaku_tag ) {
-							//$checkboxes ='<li>';
-							$checkboxes = '<input type="checkbox" name="filter_subject[]" id="filter_subject_' . $sijaishaku_tag->cat_ID . '" value="'. $sijaishaku_tag->cat_ID . '"';
-							if ( !empty( $subjects ) && in_array( $sijaishaku_tag->cat_ID, $subjects ) ) { $checkboxes .= 'checked="checked"'; }
-							$checkboxes .= ' />';
-							$checkboxes .= '<label for="filter_subject_' . $sijaishaku_tag->cat_ID . '">';
-							$checkboxes .= $sijaishaku_tag->cat_name;
-							$checkboxes .= '</label>';
-							//$checkboxes .= '</li>';
-							echo $checkboxes;
-						}
-						?>
-					</div><!-- #sijaishaku-tag-check -->
+				$sijaishaku_tags = get_categories( array( 'taxonomy' => 'subject' ) ); 
+				foreach ( $sijaishaku_tags as $sijaishaku_tag ) {
+					//$checkboxes ='<li>';
+					$checkboxes = '<input type="checkbox" name="filter_subject[]" id="filter_subject_' . $sijaishaku_tag->cat_ID . '" value="'. $sijaishaku_tag->cat_ID . '"';
+					if ( !empty( $subjects ) && in_array( $sijaishaku_tag->cat_ID, $subjects ) ) { $checkboxes .= 'checked="checked"'; }
+					$checkboxes .= ' />';
+					$checkboxes .= '<label for="filter_subject_' . $sijaishaku_tag->cat_ID . '">';
+					$checkboxes .= $sijaishaku_tag->cat_name;
+					$checkboxes .= '</label>';
+					//$checkboxes .= '</li>';
+					echo $checkboxes;
+				}
+				?>
+			</div><!-- #sijaishaku-tag-check -->
 							
-					<div id="sijaishaku-level-check">
-						<h3><?php _e( 'Academy level', 'sijaishaku-plugin' ); ?></h3>
-						<?php
-						/* Get  custom taxonomies ids from in array in this post. */
-						$terms = get_the_terms( absint( $_GET['gform_post_id'] ), 'academy_level' );
+			<div id="sijaishaku-level-check">
+				<h3><?php _e( 'Academy level', 'sijaishaku-plugin' ); ?></h3>
+				<?php
+				/* Get  custom taxonomies ids from in array in this post. */
+				$terms = get_the_terms( absint( isset( $_GET['gform_post_id'] ) ? $_GET['gform_post_id'] : 0 ), 'academy_level' );
 						
-						if ( $terms && ! is_wp_error( $terms ) ) { 
+				if ( $terms && ! is_wp_error( $terms ) ) { 
 
-							$academy_levels = array();
+					$academy_levels = array();
 
-							foreach ( $terms as $term ) {
-								$academy_levels[] = $term->term_id;
-							}
+					foreach ( $terms as $term ) {
+						$academy_levels[] = $term->term_id;
+					}
 							
-						}
-						$sijaishaku_levels = get_categories( array( 'taxonomy' => 'academy_level' ) ); 
-						foreach ( $sijaishaku_levels as $sijaishaku_level ) {
-							//$checkboxes ='<li>';
-							$checkboxes = '<input type="checkbox" name="filter_level[]" id="filter_level_' . $sijaishaku_level->cat_ID . '" value="'. $sijaishaku_level->cat_ID . '"';
-							if ( !empty( $academy_levels ) && in_array( $sijaishaku_level->cat_ID, $academy_levels ) ) { $checkboxes .= 'checked="checked"'; }
-							$checkboxes .= ' />';
-							$checkboxes .= '<label for="filter_level_' . $sijaishaku_level->cat_ID . '">';
-							$checkboxes .= $sijaishaku_level->cat_name;
-							$checkboxes .= '</label>';
-							//$checkboxes .= '</li>';
-							echo $checkboxes;
-						}
-						?>
-					</div><!-- #sijaishaku-level-check -->
+				}
+				$sijaishaku_levels = get_categories( array( 'taxonomy' => 'academy_level' ) ); 
+				foreach ( $sijaishaku_levels as $sijaishaku_level ) {
+					//$checkboxes ='<li>';
+					$checkboxes = '<input type="checkbox" name="filter_level[]" id="filter_level_' . $sijaishaku_level->cat_ID . '" value="'. $sijaishaku_level->cat_ID . '"';
+					if ( !empty( $academy_levels ) && in_array( $sijaishaku_level->cat_ID, $academy_levels ) ) { $checkboxes .= 'checked="checked"'; }
+					$checkboxes .= ' />';
+					$checkboxes .= '<label for="filter_level_' . $sijaishaku_level->cat_ID . '">';
+					$checkboxes .= $sijaishaku_level->cat_name;
+					$checkboxes .= '</label>';
+					//$checkboxes .= '</li>';
+					echo $checkboxes;
+				}
+				?>
+			</div><!-- #sijaishaku-level-check -->
 									
-				</div><!-- #sijaishaku-check -->
+		</div><!-- #sijaishaku-check -->
 
 <?php
 
 	return ob_get_clean();
 
 }
+
 ?>

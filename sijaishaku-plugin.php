@@ -4,6 +4,7 @@
  * Plugin URI: http://foxnet-themes.fi
  * Description: Add stuff what we need in sijaishaku.fi site.
  * Version: 0.1.0
+ * Text Domain: sijaishaku-plugin
  * Author: Sami Keijonen
  * Author URI: http://foxnet.fi
  * Contributors: samikeijonen
@@ -22,10 +23,19 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-// Exit if accessed directly
+/* Exit if accessed directly. */
 if ( ! defined( 'ABSPATH' ) ) exit;
  
-class Sijaishaku_Plugin {
+final class Sijaishaku_Plugin {
+
+	/**
+	 * Holds the instance of this class.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var    object
+	 */
+	private static $instance;
 
 	/**
 	 * PHP5 constructor method.
@@ -35,13 +45,13 @@ class Sijaishaku_Plugin {
 	public function __construct() {
 
 		/* Set the constants needed by the plugin. */
-		add_action( 'plugins_loaded', array( &$this, 'constants' ), 1 );
+		add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
 		/* Internationalize the text strings used. */
-		add_action( 'plugins_loaded', array( &$this, 'i18n' ), 2 );
+		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
 
 		/* Load the functions files. */
-		add_action( 'plugins_loaded', array( &$this, 'includes' ), 3 );
+		add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
 		
 	}
 
@@ -94,9 +104,24 @@ class Sijaishaku_Plugin {
 			require_once( SIJAISHAKU_PLUGIN_INCLUDES . 'admin.php' );
 		
 	}
+	
+    /**
+     * Returns the instance.
+     *
+     * @since  0.2.0
+     * @access public
+     * @return object
+     */
+    public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+			return self::$instance;
+		}
 
 }
 
-new Sijaishaku_Plugin();
+Sijaishaku_Plugin::get_instance();
 
 ?>
